@@ -1,14 +1,36 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive"; // 반응형 처리를 위한 훅
 import CameraComponent from "../component/Camera.js";
 
 const Render = () => {
   const isMobile = useMediaQuery({ maxWidth: 1024 }); // 태블릿 이하 (1024px 이하)에서만 true
   const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
+  const [isFullscreenCamera, setIsFullscreenCamera] = useState(false); // 카메라 화면 전체화면 상태
   const [translatedText, setTranslatedText] = useState("여기에 번역된 텍스트 표시");
-  const [isBackCamera, setIsBackCamera] = useState(true); // ✅ 후면 카메라 기본 설정
+  const [isBackCamera, setIsBackCamera] = useState(true); // 후면 카메라 기본 설정
 
   const videoContainerRef = useRef(null);
+  const cameraContainerRef = useRef(null); // 카메라 화면을 위한 ref
+
+  // 전체화면 변경 감지 이벤트
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreenCamera(!!document.fullscreenElement); // 카메라 화면 전체화면 상태 관리
+      setIsFullscreenVideo(!!document.fullscreenElement); // 영상 화면 전체화면 상태 관리
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+    };
+  }, []);
 
   // 전체화면 토글 함수
   const toggleFullscreen = (containerRef, isFullscreen, setIsFullscreen) => {
@@ -51,11 +73,30 @@ const Render = () => {
           </h1>
 
           {/* 카메라 화면 */}
-          <div className="w-full h-64 bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 mx-auto relative">
+          <div
+            ref={cameraContainerRef}
+            className="w-full h-64 bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 mx-auto relative"
+          >
             <CameraComponent cameraFacing={isBackCamera ? "environment" : "user"} />
+            {/* ✅ 오버레이: 전체화면에서만 보이도록 설정 */}
+            {isFullscreenCamera && (
+              <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-black bg-opacity-80 text-white rounded-lg text-lg font-semibold">
+                여기에 실시간 번역이 표시됩니다.
+              </div>
+            )}
           </div>
 
-          {/* ✅ 카메라 전면/후면 변경 버튼 */}
+          {/* ✅ 카메라 화면 전체화면 버튼 */}
+          <div className="text-center mb-4">
+            <button
+              onClick={() => toggleFullscreen(cameraContainerRef, isFullscreenCamera, setIsFullscreenCamera)}
+              className="bg-gray-500 text-white py-2 px-6 rounded-lg text-sm hover:bg-gray-600 transition-all"
+            >
+              {isFullscreenCamera ? "카메라 전체화면 종료" : "카메라 전체화면"}
+            </button>
+          </div>
+
+          {/* 카메라 전면/후면 변경 버튼 */}
           <div className="text-center mb-4">
             <button
               onClick={() => setIsBackCamera(!isBackCamera)}
