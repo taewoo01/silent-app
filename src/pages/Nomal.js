@@ -10,7 +10,7 @@ const Nomal = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
-            <h1 className="text-4xl font-bold text-center text-blue-600 mb-8">
+            <h1 className="text-4xl font-bold text-center">
                 학습된 기본 수어 목록
             </h1>
             
