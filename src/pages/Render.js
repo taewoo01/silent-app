@@ -6,7 +6,7 @@ const Render = () => {
   const isMobile = useMediaQuery({ maxWidth: 1024 }); // 태블릿 이하 (1024px 이하)에서만 true
   const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
   const [translatedText, setTranslatedText] = useState("여기에 번역된 텍스트 표시");
-  const [isBackCamera, setIsBackCamera] = useState(true); // 후면 카메라 기본 설정
+  const [isBackCamera, setIsBackCamera] = useState(true); // ✅ 후면 카메라 기본 설정
 
   const videoContainerRef = useRef(null);
 
@@ -25,7 +25,6 @@ const Render = () => {
         }
       }
     } else {
-      // 전체화면 종료 전에 문서가 전체화면 상태인지 확인
       if (document.fullscreenElement) {
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -56,7 +55,7 @@ const Render = () => {
             <CameraComponent cameraFacing={isBackCamera ? "environment" : "user"} />
           </div>
 
-          {/* 카메라 전면/후면 변경 버튼 */}
+          {/* ✅ 카메라 전면/후면 변경 버튼 */}
           <div className="text-center mb-4">
             <button
               onClick={() => setIsBackCamera(!isBackCamera)}
