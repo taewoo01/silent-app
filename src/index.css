@@ -12,6 +12,35 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* 애니메이션으로 'ST'가 커지고 자연스럽게 'SilentTalk'로 펼쳐지는 효과 */
+@keyframes expandAndReveal {
+  0% {
+    transform: scale(0.5); /* 초기 크기 */
+    opacity: 0;
+    letter-spacing: 0.5em; /* 텍스트 간격을 늘려서 작게 시작 */
+    width: 0;
+  }
+  50% {
+    transform: scale(1); /* 크기가 커지면서 */
+    opacity: 1;
+    letter-spacing: 0.1em; /* 텍스트 간격 좁히기 */
+    width: auto;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    letter-spacing: 0.1em; /* 최종 텍스트 간격 */
+    width: auto; /* 최종 텍스트 길이 */
+    content: "SilentTalk"; /* "SilentTalk"로 텍스트 변경 */
+  }
+}
+
+.animate-expand {
+  display: inline-block;
+  animation: expandAndReveal 3s ease-out forwards; /* 애니메이션 지속 시간과 동작 설정 */
+  font-weight: bold;
+  white-space: nowrap; /* 텍스트가 한 줄에 나타나도록 설정 */
 }

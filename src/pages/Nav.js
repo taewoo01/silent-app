@@ -153,7 +153,9 @@ const Nav = () => {
             <Link to="/Feedback" className={`text-lg font-semibold ${textColor} hover:text-blue-500`}>
             수어 피드백
             </Link>
-            <div className={`text-lg font-semibold ${textColor} hover:text-blue-500`}>화상회의</div>
+            <Link to="/Meeting" className={`text-lg font-semibold ${textColor} hover:text-blue-500`}>
+                화상 회의
+            </Link>
             <Link to="/About" className={`text-lg font-semibold ${textColor} hover:text-blue-500 flex items-center`}>
             <FontAwesomeIcon icon={faCircleInfo} className="mr-1" />
             소개

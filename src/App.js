@@ -17,17 +17,18 @@ function SplashScreen() {
   useEffect(() => {
     setTimeout(() => {
       setShowFullText(true);
-    }, 1500);
+    }, 1500); // 'ST'가 나타나고 'SilentTalk'로 변하는 시간
   }, []);
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-black overflow-hidden">
-      <h1 className={`text-7xl font-bold text-white ${showFullText ? 'text-reveal' : 'animate-expand'}`}>
+      <h1 className={`text-7xl font-bold text-white ${showFullText ? 'animate-expand' : ''}`}>
         {showFullText ? "SilentTalk" : "ST"}
       </h1>
     </div>
   );
 }
+
 
 function App() {
   const [loading, setLoading] = useState(true);
