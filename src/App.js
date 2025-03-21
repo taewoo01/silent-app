@@ -12,22 +12,43 @@ import Source from "./pages/Source";
 import "./index.css";  // TailwindCSS 및 애니메이션 적용된 CSS 파일
 
 function SplashScreen() {
-  const [showFullText, setShowFullText] = useState(false);
+  const [showST, setShowST] = useState(true); // ST 표시 여부
+  const [showSilentTalk, setShowSilentTalk] = useState(false); // SilentTalk 표시 여부
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowFullText(true);
-    }, 1500); // 'ST'가 나타나고 'SilentTalk'로 변하는 시간
+    // 1.5초 후 ST 사라짐
+    const stTimer = setTimeout(() => {
+      setShowST(false);
+    }, 1500);
+
+    // 2초 후 SilentTalk 등장
+    const silentTalkTimer = setTimeout(() => {
+      setShowSilentTalk(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(stTimer);
+      clearTimeout(silentTalkTimer);
+    };
   }, []);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-black overflow-hidden">
-      <h1 className={`text-7xl font-bold text-white ${showFullText ? 'animate-expand' : ''}`}>
-        {showFullText ? "SilentTalk" : "ST"}
+    <div className="splash-container">
+      <h1 className="splash-text">
+        {/* ST 표시 */}
+        <span className={`st-text ${showST ? "opacity-100" : "opacity-0"}`}>
+          ST
+        </span>
+
+        {/* SilentTalk 표시 */}
+        <span className={`silent-text ${showSilentTalk ? "opacity-100" : "opacity-0"}`}>
+          SilentTalk
+        </span>
       </h1>
     </div>
   );
 }
+
 
 
 function App() {

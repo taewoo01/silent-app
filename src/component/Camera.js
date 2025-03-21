@@ -1,27 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Webcam from "react-webcam";
 
 const CameraComponent = ({ cameraFacing = "environment" }) => {
   const webcamRef = useRef(null);
-
-  useEffect(() => {
-    console.log("useEffect is called"); // ✅ 이 로그가 출력되는지 확인
-    // ✅ getUserMedia()로 카메라 권한 요청
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((stream) => {
-        console.log("Camera is enabled", stream);
-      })
-      .catch((err) => {
-        console.error("Error accessing camera: ", err);
-      });
-  }, []);
-
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    console.log("getUserMedia is supported");
-  } else {
-    console.error("getUserMedia is not supported in this browser");
-  }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -31,7 +12,7 @@ const CameraComponent = ({ cameraFacing = "environment" }) => {
         audio={false}
         screenshotFormat="image/jpeg"
         videoConstraints={{
-          facingMode: cameraFacing, // ✅ 기본값 후면 ("environment")
+          facingMode: { exact: cameraFacing }, // ✅ cameraFacing 값을 직접 반영
         }}
       />
     </div>

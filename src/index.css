@@ -2,45 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.splash-container {
+  @apply fixed inset-0 flex items-center justify-center bg-black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+.splash-text {
+  @apply text-7xl font-bold text-white;
 }
 
-/* 애니메이션으로 'ST'가 커지고 자연스럽게 'SilentTalk'로 펼쳐지는 효과 */
-@keyframes expandAndReveal {
-  0% {
-    transform: scale(0.5); /* 초기 크기 */
-    opacity: 0;
-    letter-spacing: 0.5em; /* 텍스트 간격을 늘려서 작게 시작 */
-    width: 0;
-  }
-  50% {
-    transform: scale(1); /* 크기가 커지면서 */
-    opacity: 1;
-    letter-spacing: 0.1em; /* 텍스트 간격 좁히기 */
-    width: auto;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    letter-spacing: 0.1em; /* 최종 텍스트 간격 */
-    width: auto; /* 최종 텍스트 길이 */
-    content: "SilentTalk"; /* "SilentTalk"로 텍스트 변경 */
-  }
+.st-text {
+  @apply absolute transition-opacity duration-700;
 }
 
-.animate-expand {
-  display: inline-block;
-  animation: expandAndReveal 3s ease-out forwards; /* 애니메이션 지속 시간과 동작 설정 */
-  font-weight: bold;
-  white-space: nowrap; /* 텍스트가 한 줄에 나타나도록 설정 */
+.silent-text {
+  @apply text-8xl font-extrabold text-white transition-opacity duration-1000;
 }

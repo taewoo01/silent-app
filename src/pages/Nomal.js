@@ -14,7 +14,7 @@ const Nomal = () => {
                 학습된 기본 수어 목록
             </h1>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                 {signLanguageData.map((sign) => (
                     <div key={sign.id} className="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
                         <img src={sign.image} alt={sign.name} className="w-32 h-32 object-cover mb-4" />

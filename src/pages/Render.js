@@ -77,7 +77,9 @@ const Render = () => {
             ref={cameraContainerRef}
             className="w-full h-64 bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 mx-auto relative"
           >
+            {/* ✅ 카메라 전면/후면 변경 기능 추가 */}
             <CameraComponent cameraFacing={isBackCamera ? "environment" : "user"} />
+
             {/* ✅ 오버레이: 전체화면에서만 보이도록 설정 */}
             {isFullscreenCamera && (
               <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-black bg-opacity-80 text-white rounded-lg text-lg font-semibold">
@@ -96,7 +98,7 @@ const Render = () => {
             </button>
           </div>
 
-          {/* 카메라 전면/후면 변경 버튼 */}
+          {/* ✅ 카메라 전면/후면 변경 버튼 */}
           <div className="text-center mb-4">
             <button
               onClick={() => setIsBackCamera(!isBackCamera)}

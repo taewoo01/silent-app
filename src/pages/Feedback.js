@@ -63,7 +63,7 @@ const Feedback = () => {
           ref={videoContainerRef} 
           className="w-full h-[500px] bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 relative"
         >
-          <CameraComponent />
+          <CameraComponent cameraFacing="user"/>
 
           {/* ✅ 오버레이: 전체화면에서만 보이도록 설정 */}
           {isFullscreen && (
