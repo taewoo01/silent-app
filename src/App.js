@@ -14,33 +14,49 @@ import "./index.css";  // TailwindCSS 및 애니메이션 적용된 CSS 파일
 function SplashScreen() {
   const [showST, setShowST] = useState(true);
   const [showSilentTalk, setShowSilentTalk] = useState(false);
+  const [animateST, setAnimateST] = useState(false);
+  const [animateSilentTalk, setAnimateSilentTalk] = useState(false);
 
   useEffect(() => {
-    const stTimer = setTimeout(() => setShowST(false), 1500);
-    const silentTalkTimer = setTimeout(() => setShowSilentTalk(true), 2000);
+    // ST가 1.5초 후 점점 사라짐 (페이드아웃 + 축소)
+    setTimeout(() => setAnimateST(true), 1000);
+    setTimeout(() => setShowST(false), 1500);
 
-    return () => {
-      clearTimeout(stTimer);
-      clearTimeout(silentTalkTimer);
-    };
+    // SilentTalk가 점점 나타남 (페이드인 + 확대)
+    setTimeout(() => setShowSilentTalk(true), 1700);
+    setTimeout(() => setAnimateSilentTalk(true), 1800);
+
+    return () => {};
   }, []);
 
   return (
     <div className="splash-container flex items-center justify-center h-screen">
-      <h1 className="splash-text text-[10vw] font-bold">
-        {/* ST 표시 */}
-        <span className={`st-text transition-opacity duration-500 ${showST ? "opacity-100" : "opacity-0"}`}>
+      {/* ST 텍스트 */}
+      {showST && (
+        <h1
+          className={`text-[10vw] font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 text-white ${
+            animateST ? "opacity-0 scale-90" : "opacity-100 scale-100"
+          }`}
+        >
           ST
-        </span>
+        </h1>
+      )}
 
-        {/* SilentTalk 표시 */}
-        <span className={`silent-text transition-opacity duration-500 ${showSilentTalk ? "opacity-100" : "opacity-0"}`}>
+      {/* SilentTalk 텍스트 */}
+      {showSilentTalk && (
+        <h1
+          className={`text-[10vw] font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 text-white ${
+            animateSilentTalk ? "opacity-100 scale-100" : "opacity-0 scale-90"
+          }`}
+        >
           SilentTalk
-        </span>
-      </h1>
+        </h1>
+      )}
     </div>
   );
 }
+
+
 
 
 
