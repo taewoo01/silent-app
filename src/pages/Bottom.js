@@ -15,7 +15,7 @@ const Bottom = () => {
         <span className="ml-2 text-gray-300">백선주</span>
       </div>
       <Link to={'./Source'}>
-        <div className="text-xs text-end">출처</div>
+        <div className="text-xs text-end m-5">출처</div>
       </Link>
     </footer>
   );

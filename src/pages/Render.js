@@ -8,6 +8,8 @@ const Render = () => {
   const [isFullscreenCamera, setIsFullscreenCamera] = useState(false); // 카메라 화면 전체화면 상태
   const [translatedText, setTranslatedText] = useState("여기에 번역된 텍스트 표시");
   const [isBackCamera, setIsBackCamera] = useState(true); // 후면 카메라 기본 설정
+  const [videoFile, setVideoFile] = useState(null); // 업로드된 영상 파일 상태 관리
+  const [videoUrl, setVideoUrl] = useState(""); // 영상 URL 상태 관리
 
   const videoContainerRef = useRef(null);
   const cameraContainerRef = useRef(null); // 카메라 화면을 위한 ref
@@ -60,6 +62,15 @@ const Render = () => {
       }
     }
     setIsFullscreen(!isFullscreen);
+  };
+
+  // 영상 업로드 처리 함수
+  const handleVideoUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setVideoFile(file);
+      setVideoUrl(URL.createObjectURL(file)); // 영상을 브라우저에서 볼 수 있도록 URL 생성
+    }
   };
 
   return (
@@ -123,9 +134,22 @@ const Render = () => {
         {/* 영상 화면 */}
         <div
           ref={videoContainerRef}
-          className="w-full max-w-2xl h-96 bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 mx-auto border-4 border-gray-500"
+          className="w-full max-w-2xl h-96 bg-gray-800 flex items-center justify-center rounded-lg shadow-md mb-4 mx-auto border-4 border-gray-500 relative"
         >
-          <span className="text-white text-lg">업로드된 영상</span>
+          <input
+            type="file"
+            accept="video/*"
+            onChange={handleVideoUpload}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          />
+          {videoUrl ? (
+            <video width="100%" height="100%" controls>
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <span className="text-white text-lg">화면 클릭시 파일 추가</span>
+          )}
         </div>
 
         {/* 전체화면 버튼 */}
