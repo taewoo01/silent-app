@@ -38,6 +38,10 @@ const Nav = () => {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev); // 메뉴 열고 닫기
     setIsMenuActive((prev) => !prev); // 메뉴 활성화 상태 변경
+
+    if (!isOpen) {
+      window.scrollTo(0, 0); // 🔹 메뉴가 열릴 때 스크롤을 맨 위로 이동
+    }
   };
 
   const closeMenu = () => {

@@ -12,19 +12,12 @@ import Source from "./pages/Source";
 import "./index.css";  // TailwindCSS 및 애니메이션 적용된 CSS 파일
 
 function SplashScreen() {
-  const [showST, setShowST] = useState(true); // ST 표시 여부
-  const [showSilentTalk, setShowSilentTalk] = useState(false); // SilentTalk 표시 여부
+  const [showST, setShowST] = useState(true);
+  const [showSilentTalk, setShowSilentTalk] = useState(false);
 
   useEffect(() => {
-    // 1.5초 후 ST 사라짐
-    const stTimer = setTimeout(() => {
-      setShowST(false);
-    }, 1500);
-
-    // 2초 후 SilentTalk 등장
-    const silentTalkTimer = setTimeout(() => {
-      setShowSilentTalk(true);
-    }, 2000);
+    const stTimer = setTimeout(() => setShowST(false), 1500);
+    const silentTalkTimer = setTimeout(() => setShowSilentTalk(true), 2000);
 
     return () => {
       clearTimeout(stTimer);
@@ -33,15 +26,15 @@ function SplashScreen() {
   }, []);
 
   return (
-    <div className="splash-container">
-      <h1 className="splash-text">
+    <div className="splash-container flex items-center justify-center h-screen">
+      <h1 className="splash-text text-[10vw] font-bold">
         {/* ST 표시 */}
-        <span className={`st-text ${showST ? "opacity-100" : "opacity-0"}`}>
+        <span className={`st-text transition-opacity duration-500 ${showST ? "opacity-100" : "opacity-0"}`}>
           ST
         </span>
 
         {/* SilentTalk 표시 */}
-        <span className={`silent-text ${showSilentTalk ? "opacity-100" : "opacity-0"}`}>
+        <span className={`silent-text transition-opacity duration-500 ${showSilentTalk ? "opacity-100" : "opacity-0"}`}>
           SilentTalk
         </span>
       </h1>
