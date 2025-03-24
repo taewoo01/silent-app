@@ -7,6 +7,7 @@ import Nomal from "./pages/Nomal";
 import Render from "./pages/Render";
 import Feedback from "./pages/Feedback";
 import Meeting from "./pages/Meeting";
+import RealRender from "./pages/realRender";
 import Bottom from "./pages/Bottom";
 import Source from "./pages/Source";
 import "./index.css";  // TailwindCSS 및 애니메이션 적용된 CSS 파일
@@ -86,6 +87,7 @@ function App() {
               <Route path="/About" element={<About />} />
               <Route path="/Nomal" element={<Nomal />} />
               <Route path="/Render" element={<Render />} />
+              <Route path="/RealRender" element={<RealRender />} />
               <Route path="/Feedback" element={<Feedback />} />
               <Route path="/Source" element={<Source />} />
               <Route path="/Meeting" element={<Meeting />} />

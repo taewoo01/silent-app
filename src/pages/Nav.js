@@ -100,7 +100,7 @@ const Nav = () => {
 
       {isMobile ? (
         <>
-          <div className="w-full flex justify-between items-center relative z-10 ">
+          <div className="w-full flex justify-between items-center relative z-10">
             {/* 오른쪽으로 정렬된 메뉴 버튼 */}
             <button
             onClick={toggleMenu}
@@ -121,8 +121,11 @@ const Nav = () => {
           {isOpen && (
             <div className="absolute top-0 right-0 w-full mt-4 bg-white shadow-md z-20">
               <div className="text-right">
+                <Link to="/RealRender" onClick={closeMenu} className="p-4 block border-b border-black text-black hover:text-blue-500">
+                실시간 번역
+                </Link>
                 <Link to="/Render" onClick={closeMenu} className="p-4 block border-b border-black text-black hover:text-blue-500">
-                  수어 번역
+                  수어 영상 번역
                 </Link>
                 <Link to="/Nomal" onClick={closeMenu} className="p-4 block border-b border-black text-black hover:text-blue-500">
                   등록된 수어
@@ -149,7 +152,7 @@ const Nav = () => {
         </Link>
         <div className="flex space-x-8">
             <Link to="/Render" className={`text-lg font-semibold ${textColor} hover:text-blue-500`}>
-            수어 번역
+            수어 영상 번역
             </Link>
             <Link to="/Nomal" className={`text-lg font-semibold ${textColor} hover:text-blue-500`}>
             등록된 수어
