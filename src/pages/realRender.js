@@ -86,16 +86,6 @@ const RealRender = () => {
         </button>
       </div>
 
-      {/* 카메라 전면/후면 변경 버튼 */}
-      <div className="text-center mb-4">
-        <button
-          onClick={() => setIsBackCamera(!isBackCamera)}
-          className="bg-gray-500 text-white py-2 px-6 rounded-lg text-sm hover:bg-gray-600 transition-all"
-        >
-          {isBackCamera ? "전면 카메라로 전환" : "후면 카메라로 전환"}
-        </button>
-      </div>
-
       {/* 번역 결과 */}
       <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md text-center border border-gray-300 mx-auto">
         <p className="text-lg font-semibold text-gray-800">번역 결과</p>

@@ -58,9 +58,6 @@ function SplashScreen() {
 }
 
 
-
-
-
 function App() {
   const [loading, setLoading] = useState(true);
 
