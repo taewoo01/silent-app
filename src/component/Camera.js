@@ -134,6 +134,7 @@ const CameraComponent = ({ onPrediction }) => {
         onFrame: async () => {
           await hands.send({ image: videoElement });
         },
+        facingMode: { exact: "environment" },
         width: 640,
         height: 480,
       });
