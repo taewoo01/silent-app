@@ -6,13 +6,13 @@ const Nomal = () => {
     { id: 1, name: "1", description: "숫자 1", image: "/images/1.png" },
     { id: 2, name: "2", description: "숫자 2", image: "/images/2.png" },
     { id: 3, name: "3", description: "숫자 3", image: "/images/3.png" },
-    { id: 4, name: "괜찮아요", description: "괜찮다는는 표현", image: "/images/괜찮아요.png" },
+    { id: 4, name: "괜찮아요", description: "괜찮다는 표현", image: "/images/괜찮아요.png" },
     { id: 5, name: "덥다", description: "덥다는 표현", image: "/images/덥다.png" },
     { id: 6, name: "사랑합니다", description: "사랑한다는 표현", image: "/images/사랑합니다.png" },
     { id: 7, name: "수어", description: "수어라는 단어", image: "/images/수어.png" },
-    { id: 8, name: "ㅇ", description: "자음 ㅇㅇ", image: "/images/ㅇ.png" },
+    { id: 8, name: "ㅇ", description: "자음 ㅇ", image: "/images/ㅇ.png" },
     { id: 9, name: "잘지냈어요", description: "잘 지냈다는 표현", image: "/images/잘 지냈어요.png" },
-    { id: 10, name: "ㅑ", description: "모음 ㅑㅑ", image: "/images/ㅑ.png" },
+    { id: 10, name: "ㅑ", description: "모음 ㅑ", image: "/images/ㅑ.png" },
   ];
 
   return (
