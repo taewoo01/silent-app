@@ -164,6 +164,7 @@ const CameraComponent = ({ onPrediction }) => {
       />
       <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-2 rounded">
         <p>예측: {prediction.label}</p>
+        <p>신뢰도: {(prediction.confidence * 100).toFixed(1)}%</p>
       </div>
     </div>
   );

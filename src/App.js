@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // HashRouter 사용
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import Nav from "./pages/Nav";
 import Home from "./pages/Home"
 import About from "./pages/About";
